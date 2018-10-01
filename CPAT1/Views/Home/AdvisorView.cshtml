@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Course>
+@{
+    ViewData["Title"] = "Advisor View";
+}
+
+<div>
+    <h1>
+        Advisor View
+    </h1>
+    <div>
+        <h3>
+            Student Name: Insert Student Name Here<br />
+            N#: N99999999
+        </h3>
+    </div>
+</div>
+<div>
+    <table border="0">
+        <thead>
+            <tr>
+                <th colspan="4" style="text-align: center">
+                    <h2>
+                        Major: Computer Science
+                    </h2>
+                </th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            @foreach (Course c in Model)
+            {
+            <tr>
+                <td colspan="1"><h3>@nameof(c.CourseID): @c.CourseID</h3></td>
+                <td colspan="2"><h3>@c.CourseName</h3></td>
+                <td colspan="1"><h3>@nameof(c.CreditHours): @c.CreditHours</h3></td>
+            </tr>
+            <tr>
+                <td colspan="4"><b>@nameof(c.Description)</b>: <i>@c.Description</i></td>
+            </tr>
+            <tr>
+                <td colspan="1"><b>Number of @nameof(c.PreRequisites)</b>: 
+                    <ul>
+                        <li>@(c.PreRequisites.Count() - 1)</li>
+                    </ul>
+                </td>
+                <td colspan="1"><b>Number of @nameof(c.CoRequisites)</b>:
+                    <ul>
+                        <li>@(c.CoRequisites.Count() - 1)</li>
+                    </ul>
+                </td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                   <hr />
+                </td>
+            </tr>
+            }
+        </tbody>
+</table>
+</div>
+

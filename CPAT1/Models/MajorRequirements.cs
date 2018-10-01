@@ -1,23 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using CPAT1.Models;
 
-namespace CPAT1.Controllers
+namespace CPAT1.Models
 {
-    public class HomeController : Controller
+    public class MajorRequirements
     {
-        public IActionResult Index()
+        public MajorRequirements()
         {
-            return View();
-        }
-
-        public async Task<ViewResult>  AdvisorView()
-        {
-            var courses = new Course[]
+            var ReqClasses = new[]
             {
                 new Course
                 {
@@ -26,16 +18,8 @@ namespace CPAT1.Controllers
                     CreditHours = 3,
                     Description = "Topics will include linear and quadratic functions and their applications; " +
                     "systems of equations; inequalities, polynomials, exponentials, logarithms, trigonometric " +
-                    "functions and their inverses and their graphs; trigonometric identities, and complex numbers.",
-                    PreRequisites = new int[]
-                    {
-                        0
-                    },
-                    CoRequisites = new int[]
-                    {
-                        0
-                    }
-
+                    "functions and their inverses and their graphs; trigonometric identities, and complex numbers."
+                    
                 },
 
                 new Course
@@ -46,15 +30,7 @@ namespace CPAT1.Controllers
                     Description = "This course provides an introduction to the fundamentals of visual programming as " +
                     "well as procedural language structure and capabilities. Students learn about visual programming " +
                     "development, including problem definition, problem solving and algorithms, procedures, controls, " +
-                    "arrays, structures, coding, visual interface design, testing, and debugging. ",
-                    PreRequisites = new int[]
-                    {
-                        0
-                    },
-                    CoRequisites = new int[]
-                    {
-                        0
-                    }
+                    "arrays, structures, coding, visual interface design, testing, and debugging. "
                 },
 
                 new Course
@@ -68,11 +44,7 @@ namespace CPAT1.Controllers
                     "software design techniques; and problem solving. The concepts are utilized in numerous programming projects. ",
                     PreRequisites = new int[]
                     {
-                        0, 100
-                    },
-                    CoRequisites = new int[]
-                    {
-                        0
+                        100
                     }
                 },
 
@@ -86,11 +58,7 @@ namespace CPAT1.Controllers
                     "Boolean algebra and switching theory, and logic.",
                     PreRequisites = new int[]
                     {
-                        0, 99
-                    },
-                    CoRequisites = new int[]
-                    {
-                        0
+                        99
                     }
                 },
 
@@ -106,40 +74,14 @@ namespace CPAT1.Controllers
                     "in the Web environment.",
                     PreRequisites = new int[]
                     {
-                        0, 100, 101
+                        100, 101
                     },
                     CoRequisites = new int[]
                     {
-                        0, 200
+                        200
                     }
                 }
             };
-            return View(courses);
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
