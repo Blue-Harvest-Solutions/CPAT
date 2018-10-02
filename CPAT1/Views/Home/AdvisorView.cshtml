@@ -20,7 +20,7 @@
             <tr>
                 <th colspan="4" style="text-align: center">
                     <h2>
-                        Major: Computer Science
+                        Major: @Model.First().Major
                     </h2>
                 </th>
             </tr>
@@ -38,15 +38,36 @@
                 <td colspan="4"><b>@nameof(c.Description)</b>: <i>@c.Description</i></td>
             </tr>
             <tr>
-                <td colspan="1"><b>Number of @nameof(c.PreRequisites)</b>: 
-                    <ul>
-                        <li>@(c.PreRequisites.Count() - 1)</li>
-                    </ul>
+                <td colspan="1"><b>@nameof(c.PreRequisites)</b>: 
+                                <ul>
+                                    @if (c.PreRequisites.Count() > 0)
+                                    {
+                                        @for (int x = 0; x < c.PreRequisites.Length; x++)
+                                        {
+                                            int y = c.PreRequisites[x];
+                                            <li>@y</li>;
+                                        }
+                                    } else
+                                    {
+                                     <li>N/A</li>   
+                                    }
+                                </ul>
                 </td>
-                <td colspan="1"><b>Number of @nameof(c.CoRequisites)</b>:
-                    <ul>
-                        <li>@(c.CoRequisites.Count() - 1)</li>
-                    </ul>
+                <td colspan="1"><b>@nameof(c.CoRequisites)</b>:
+                                <ul>
+                                    @if (c.CoRequisites.Count() > 0)
+                                    {
+                                        @for (int x = 0; x < c.CoRequisites.Length; x++)
+                                        {
+                                            int y = c.CoRequisites[x];
+                                            <li>@y</li>;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <li>N/A</li>
+                                    }
+                                </ul>
                 </td>
                 <td colspan="2"></td>
             </tr>
