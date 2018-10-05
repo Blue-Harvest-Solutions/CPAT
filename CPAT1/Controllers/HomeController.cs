@@ -15,9 +15,28 @@ namespace CPAT1.Controllers
             return View();
         }
 
-        public async Task<ViewResult>  AdvisorView()
+        public ViewResult AdvisorView()
         {
-            
+            var students = new Student[]
+            {
+                new Student
+                {
+                    FirstName = "Ana",
+                    MiddleInitial = 'S',
+                    LastName = "Smith",
+                    N_Number = "N00000001",
+                    MajorID = 1
+                },
+                new Student
+                {
+                    FirstName = "Banana",
+                    LastName = "Spots",
+                    N_Number = "N00000002",
+                    MajorID = 2
+                }
+            };
+
+            ViewBag.currentStudent = students[0];
 
             var courses = new Course[]
             {
@@ -32,11 +51,11 @@ namespace CPAT1.Controllers
                     Major = "Computer Science",
                     PreRequisites = new int[]
                     {
-                        
+
                     },
                     CoRequisites = new int[]
                     {
-                        
+
                     }
 
                 },
@@ -53,11 +72,11 @@ namespace CPAT1.Controllers
                     Major = "Computer Science",
                     PreRequisites = new int[]
                     {
-                        
+
                     },
                     CoRequisites = new int[]
                     {
-                        
+
                     }
                 },
 
@@ -77,7 +96,7 @@ namespace CPAT1.Controllers
                     },
                     CoRequisites = new int[]
                     {
-                        
+
                     }
                 },
 
@@ -96,7 +115,7 @@ namespace CPAT1.Controllers
                     },
                     CoRequisites = new int[]
                     {
-                        
+
                     }
                 },
 
@@ -121,6 +140,15 @@ namespace CPAT1.Controllers
                     }
                 }
             };
+
+            double sumHours = 0;
+
+            foreach (Course c in courses)
+            {
+                sumHours += c.CreditHours;
+            }
+            ViewBag.TotalHours = sumHours;
+
             return View(courses);
         }
 

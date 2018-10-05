@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<Course>
+
 @{
     ViewData["Title"] = "Advisor View";
 }
+
+
 
 <div>
     <h1>
@@ -9,8 +12,17 @@
     </h1>
     <div>
         <h3>
-            Student Name: Insert Student Name Here<br />
-            N#: N99999999
+            Student Name: @ViewBag.currentStudent.FirstName 
+            @if (ViewBag.currentStudent.MiddleInitial != null)
+            {
+                Write(ViewBag.currentStudent.MiddleInitial + ".");
+            }
+            @ViewBag.currentStudent.LastName<br />
+            N#: @ViewBag.currentStudent.N_Number<br />
+            Major: @if (ViewBag.currentStudent.MajorID == 1)
+            {
+                Write("Computer Science");
+            }
         </h3>
     </div>
 </div>
@@ -30,7 +42,7 @@
             @foreach (Course c in Model)
             {
             <tr>
-                <td colspan="1"><h3>@nameof(c.CourseID): @c.CourseID</h3></td>
+                <td colspan="1"><h3 id="@c.CourseID">@nameof(c.CourseID): @c.CourseID</h3></td>
                 <td colspan="2"><h3>@c.CourseName</h3></td>
                 <td colspan="1"><h3>@nameof(c.CreditHours): @c.CreditHours</h3></td>
             </tr>
@@ -42,10 +54,9 @@
                                 <ul>
                                     @if (c.PreRequisites.Count() > 0)
                                     {
-                                        @for (int x = 0; x < c.PreRequisites.Length; x++)
+                                        @foreach (int pR in c.PreRequisites)
                                         {
-                                            int y = c.PreRequisites[x];
-                                            <li>@y</li>;
+                                            <li><a href="#@pR">@pR</a></li>;
                                         }
                                     } else
                                     {
@@ -57,10 +68,10 @@
                                 <ul>
                                     @if (c.CoRequisites.Count() > 0)
                                     {
-                                        @for (int x = 0; x < c.CoRequisites.Length; x++)
+                                        @foreach (int cR in c.CoRequisites)
                                         {
-                                            int y = c.CoRequisites[x];
-                                            <li>@y</li>;
+                                            
+                                            <li>@cR</li>;
                                         }
                                     }
                                     else
@@ -78,6 +89,16 @@
             </tr>
             }
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="4">
+                    <h3 style="text-align:right">Total Hours: @ViewBag.TotalHours</h3>
+                </th>
+            </tr>
+        </tfoot>
 </table>
+
+    
+
 </div>
 
